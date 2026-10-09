@@ -71,7 +71,14 @@ req.params.id
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
-});
-app.listen(5000, () => {
- console.log("Server running on port 5000");
-});
+
+ const PORT = process.env.PORT || 5000;
+ 
+ if (!process.env.VERCEL) {
+   app.listen(5000, () => {
+     console.log("Server running on port 5000");
+   });
+ }
+})
+
+module.exports = app;
